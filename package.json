@@ -1,0 +1,33 @@
+{
+  "name": "iduk.github.io",
+  "version": "1.0.0",
+  "main": "index.html",
+  "repository": "https://github.com/iduk/iduk.github.io.git",
+  "author": "iduk <iduk.design@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": "14.19.0"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d build",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,scss}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3",
+    "husky": "^7.0.0",
+    "lint-staged": "^12.4.0",
+    "prettier": "2.6.2"
+  }
+}
