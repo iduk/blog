@@ -48,13 +48,13 @@ export default function App() {
         {/* Nav Layout */}
         <Route path="/" element={<BaseLayout />}>
           <Route index element={<Home />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="posts/*" element={<Posts />}>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/posts/*" element={<Posts />}>
             <Route index element={<PostList />} />
             <Route path=":postId" element={<Post />} />
           </Route>
-          <Route path="example" element={<Example />} />
-          <Route path="test" element={<Test />} />
+          <Route path="/example" element={<Example />} />
+          <Route path="/test" element={<Test />} />
         </Route>
 
         {/* None Layout */}
