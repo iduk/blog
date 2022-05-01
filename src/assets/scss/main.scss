@@ -1,0 +1,15 @@
+@charset 'utf-8';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Base
+@import 'variables';
+@import 'mixins';
+
+@import 'components';
+
+// Theme & etc...
+@import 'theme';
+@import 'global';
