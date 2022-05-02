@@ -4,7 +4,7 @@
   "private": "false",
   "author": "iduk",
   "license": "MIT",
-  "homepage": "https://iduk.github.io",
+  "homepage": "https://github.com/iduk/iduk.github.io/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npx webpack --watch",
@@ -40,6 +40,7 @@
     "sass-loader": "^12.4.0",
     "style-loader": "^3.3.1",
     "url-loader": "^4.1.1",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
@@ -63,7 +64,7 @@
     "react-transition-group": "^4.4.2",
     "sass": "^1.51.0",
     "styled-components": "^5.3.3",
-    "tailwindcss": "^3.0.11",
+    "styled-reset": "^4.3.4",
     "typeit-react": "^2.4.3",
     "webpack": "^5.65.0",
     "webpack-dev-middleware": "^5.3.0",

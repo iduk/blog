@@ -34,28 +34,19 @@ $color-palette: (
   gray: $gray,
 ) !default;
 
-$dark-palette: (
-  primary: lighten($brand-1, 5%),
-  secondary: lighten($brand-2, 5%),
-  success: lighten($green, 5%),
-  warning: lighten($yellow, 5%),
-  error: lighten($red, 5%),
-  dark: lighten($dark, 5%),
-  light: lighten($light, 5%),
-  gray: lighten($gray, 5%),
-) !default;
-
-$gray-1: #f2f3f4;
-$gray-2: #e3e3e6;
-$gray-3: #c6c8ce;
-$gray-4: #aaacb5;
-$gray-5: #8e909d;
-$gray-6: #727583;
-$gray-7: #5a5c67;
-$gray-8: #353340;
-$gray-9: #292634;
+$gray-0: #f6f6f6;
+$gray-1: #ecedee;
+$gray-2: #d0d1d4;
+$gray-3: #b3b5ba;
+$gray-4: #7a7e87;
+$gray-5: #414753;
+$gray-6: #3b404b;
+$gray-7: #31353e;
+$gray-8: #272b32;
+$gray-9: #202329;
 
 $grays: (
+  0: $gray-0,
   1: $gray-1,
   2: $gray-2,
   3: $gray-3,

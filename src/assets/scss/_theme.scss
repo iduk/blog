@@ -12,7 +12,6 @@ $theme: (
     ),
   ),
   'dark': (
-    'colors': $dark-palette,
     'shades': (
       'shade-0': $gray-9,
       'shade-1': $gray-8,
@@ -43,10 +42,9 @@ $transition-bg: all 0.1s cubic-bezier(0.185, 0.475, 0.895, 0.39);
     @each $name, $color in $shades {
       --#{''+$name}: #{$color};
     }
+
     @each $name, $color in $colors {
       --#{''+$name}: #{$color};
-      --#{''+$name}-dark: #{darken($color, 10%)};
-      --#{''+$name}-light: #{lighten($color, 10%)};
     }
 
     @each $name, $color in $theme-mode {

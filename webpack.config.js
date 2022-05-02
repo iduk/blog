@@ -17,16 +17,14 @@ const PATHS = {
 
 module.exports = {
   mode: 'development',
-
-  entry: {
-    main: './src/index.js',
-  },
+  entry: './src/index.js',
 
   output: {
-    filename: '[name].bundle.js',
+    filename: '[id].bundle.js',
     path: path.resolve(__dirname, './dist'),
-    assetModuleFilename: 'assets/[name][ext]', // 리소스 경로 구성
+    assetModuleFilename: 'static/[name][ext]', // 리소스 경로 구성
     publicPath: ASSET_PATH,
+    asyncChunks: true,
     clean: true, // 생성된 파일만 보임
   },
 
@@ -81,7 +79,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
-              sourceMap: true,
+              sourceMap: false,
               modules: {
                 auto: true,
                 localIdentName: '[local]_[hash:base64]',
@@ -133,7 +131,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'images/[name].[ext]',
+              name: 'static/images/[name].[ext]',
             },
           },
         ],
@@ -145,7 +143,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'fonts/[name].[ext]',
+              name: 'static/fonts/[name].[ext]',
             },
           },
         ],
@@ -165,10 +163,10 @@ module.exports = {
       chunkFilename: '[id].[contenthash].css',
     }),
 
-    new CleanWebpackPlugin(),
-
     new webpack.DefinePlugin({
       'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
     }),
+
+    new CleanWebpackPlugin(),
   ],
 }
