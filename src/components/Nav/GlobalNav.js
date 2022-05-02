@@ -61,9 +61,7 @@ function GlobalNav() {
                       <NavLink
                         to={item.links}
                         className={({ isActive }) =>
-                          `${
-                            isActive ? cx('nav-link', 'active') : cx('nav-link')
-                          }`
+                          isActive ? cx('nav-link', 'active') : cx('nav-link')
                         }
                         tabIndex={0}
                         title={item.title}

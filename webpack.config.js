@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 const glob = require('glob')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -7,6 +8,7 @@ const purgecss = require('@fullhuman/postcss-purgecss')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const devMode = process.env.NODE_ENV !== 'production'
+const ASSET_PATH = process.env.ASSET_PATH || '/'
 
 // Basic Path
 const PATHS = {
@@ -24,6 +26,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, './dist'),
     assetModuleFilename: 'assets/[name][ext]', // 리소스 경로 구성
+    publicPath: ASSET_PATH,
     clean: true, // 생성된 파일만 보임
   },
 
@@ -73,7 +76,7 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          devMode ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -81,7 +84,7 @@ module.exports = {
               sourceMap: true,
               modules: {
                 auto: true,
-                localIdentName: '[local]__[hash:base64:5]',
+                localIdentName: '[local]_[hash:base64]',
               },
             },
           },
@@ -124,32 +127,28 @@ module.exports = {
 
       // assets
 
-      // {
-      //   test: /\.svg/,
-      //   type: 'asset/inline',
-      //   resourceQuery: /url/,
-      // },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/images/[name][ext][query]',
-        },
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[name].[ext]',
+            },
+          },
+        ],
       },
 
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/fonts/[name][ext][query]',
-        },
-      },
-
-      // html
-      {
-        test: /\.html$/,
-        loader: 'html-loader',
-        options: { minimize: false },
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'fonts/[name].[ext]',
+            },
+          },
+        ],
       },
     ],
   },
@@ -167,5 +166,9 @@ module.exports = {
     }),
 
     new CleanWebpackPlugin(),
+
+    new webpack.DefinePlugin({
+      'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
+    }),
   ],
 }

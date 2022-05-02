@@ -16,7 +16,7 @@
 // bg,border,invert-color & hover,focus
 @mixin button-theme($color-palette) {
   @each $name, $color in $color-palette {
-    &-#{$name} {
+    &-#{''+$name} {
       background-color: #{$color};
       border-color: #{$color};
       @include color-invert($color);

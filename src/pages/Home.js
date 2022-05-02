@@ -5,6 +5,7 @@ import Loading from '../components/Loading'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 // import TypeIt from 'typeit-react'
+import Svg from '../assets/images/design.svg'
 
 const cx = classnames.bind(styles)
 
@@ -29,6 +30,12 @@ function Home() {
       {loading === false ? (
         <div className={cx('home')}>
           <p>dsafsdf</p>
+          <img
+            src={'images/design.svg'}
+            width={'50px'}
+            height={'50px'}
+            alt=""
+          />
         </div>
       ) : (
         <Loading />
