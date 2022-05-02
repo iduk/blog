@@ -12402,28 +12402,28 @@ __webpack_require__.r(__webpack_exports__);
 
 function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-    path: process.env.PUBLIC_URL + '/',
+    path: "/",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Layouts_BaseLayout__WEBPACK_IMPORTED_MODULE_1__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     index: true,
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pages_Home__WEBPACK_IMPORTED_MODULE_3__["default"], null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-    path: process.env.PUBLIC_URL + '/profile',
+    path: "/profile",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pages_Profile__WEBPACK_IMPORTED_MODULE_8__["default"], null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-    path: process.env.PUBLIC_URL + '/posts/*',
+    path: "/posts/*",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pages_Blog_Posts__WEBPACK_IMPORTED_MODULE_5__["default"], null)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     index: true,
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pages_Blog_PostList__WEBPACK_IMPORTED_MODULE_6__["default"], null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-    path: process.env.PUBLIC_URL + ':postId',
+    path: ":postId",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pages_Blog_Post__WEBPACK_IMPORTED_MODULE_7__["default"], null)
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-    path: process.env.PUBLIC_URL + '/example',
+    path: "/example",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pages_Example__WEBPACK_IMPORTED_MODULE_4__["default"], null)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
-    path: process.env.PUBLIC_URL + '/test',
+    path: "/test",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_pages_Test_index__WEBPACK_IMPORTED_MODULE_9__["default"], null)
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
     path: "*",
