@@ -10,7 +10,7 @@ function BaseLayout() {
   return (
     <>
       <GlobalNav />
-      <main className={cx('layout--base', 'container', 'container-sm')}>
+      <main className={cx('layout')}>
         <Outlet />
       </main>
     </>

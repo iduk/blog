@@ -1,4 +1,7 @@
 // Base Layout Style
-.base-layout {
+.layout {
   position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }

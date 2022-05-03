@@ -15,6 +15,10 @@ const GlobalStyles = createGlobalStyle`
         url('../fonts/NotoSans-Regular.otf') format('opentype');
     }
 
+    body > * {
+      box-sizing: border-box;
+    }
+
     ul,
     li,
     dt,
@@ -45,8 +49,11 @@ const GlobalStyles = createGlobalStyle`
       box-sizing: border-box;
       appearance: none;
       outline: none;
-      border: none;
+      border: inherit;
+      background: inherit;
+      color: inherit;
     }
+
 
 `
 

@@ -37,45 +37,43 @@ function GlobalNav() {
   return (
     <>
       <header className={cx('global-nav')}>
-        <div className={cx('container', 'container-sm')}>
-          <div className={cx('nav-wrapper')}>
-            <Link to="/" className={cx('logo', 'tracking-in-expand')}>
-              PICTOR
-            </Link>
-            <button className={cx('toggler')} onClick={toggleNav} />
-          </div>
-
-          <Transition in={isCollapsedNav} timeout={duration}>
-            {(state) => (
-              <nav
-                style={{
-                  ...defaultStyle,
-                  ...transitionStyles[state],
-                }}
-                className={cx('navbar')}
-                id="menu"
-              >
-                <ul className={cx('nav-list')}>
-                  {navlist.map((item, id) => (
-                    <li key={id}>
-                      <NavLink
-                        to={item.links}
-                        className={({ isActive }) =>
-                          isActive ? cx('nav-link', 'active') : cx('nav-link')
-                        }
-                        tabIndex={0}
-                        title={item.title}
-                        onClick={closeNav}
-                      >
-                        <span className={cx('nav-text')}>{item.title}</span>
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            )}
-          </Transition>
+        <div className={cx('nav-wrapper')}>
+          <Link to="/" className={cx('logo', 'tracking-in-expand')}>
+            PICTOR
+          </Link>
+          <button className={cx('toggler')} onClick={toggleNav} />
         </div>
+
+        <Transition in={isCollapsedNav} timeout={duration}>
+          {(state) => (
+            <nav
+              style={{
+                ...defaultStyle,
+                ...transitionStyles[state],
+              }}
+              className={cx('navbar')}
+              id="menu"
+            >
+              <ul className={cx('nav-list')}>
+                {navlist.map((item, id) => (
+                  <li key={id}>
+                    <NavLink
+                      to={item.links}
+                      className={({ isActive }) =>
+                        isActive ? cx('nav-link', 'active') : cx('nav-link')
+                      }
+                      tabIndex={0}
+                      title={item.title}
+                      onClick={closeNav}
+                    >
+                      <span className={cx('nav-text')}>{item.title}</span>
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
+        </Transition>
       </header>
     </>
   )
