@@ -49,8 +49,8 @@ module.exports = {
   devtool: 'cheap-source-map',
   devServer: {
     static: './dist',
-    historyApiFallback: true,
     port: 3333,
+    historyApiFallback: true,
 
     client: {
       progress: true,
