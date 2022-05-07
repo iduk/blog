@@ -1,25 +1,24 @@
 $theme: (
   'light': (
-    'colors': $color-palette,
-    'shades': (
-      'shade-0': $gray-1,
-      'shade-1': $gray-2,
-      'shade-2': rgba(black, 0.2),
-      'shade-3': $gray-4,
-      'shade-4': $gray-5,
-      'shade-5': $gray-8,
-      'shade-6': $gray-9,
+    'base-color': $color-palette,
+    'theme-color': (
+      'theme-bg': $gray-1,
+      'theme-layer': $gray-2,
+      'theme-border': $gray-3,
+      'theme-text': $gray-6,
+      'theme-heading': $gray-7,
+      'theme-accent': $gray-9,
     ),
   ),
   'dark': (
-    'shades': (
-      'shade-0': $gray-9,
-      'shade-1': $gray-8,
-      'shade-2': rgba(white, 0.2),
-      'shade-3': $gray-6,
-      'shade-4': $gray-5,
-      'shade-5': $gray-2,
-      'shade-6': $gray-1,
+    'base-color': $color-palette,
+    'theme-color': (
+      'theme-bg': $gray-9,
+      'theme-layer': $gray-7,
+      'theme-border': $gray-6,
+      'theme-text': $gray-3,
+      'theme-heading': $gray-2,
+      'theme-accent': $gray-1,
     ),
   ),
 );
@@ -27,37 +26,23 @@ $theme: (
 $transition-bg: all 0.1s cubic-bezier(0.185, 0.475, 0.895, 0.39);
 
 @each $theme-name, $theme-vars in $theme {
-  $shades: map-get($theme-vars, 'shades');
-  $colors: map-get($theme-vars, 'colors');
-
-  $theme-mode: (
-    'bg': map-get($shades, 'shade-0'),
-    'border': map-get($shades, 'shade-2'),
-    'border-focus': map-get($shades, 'shade-3'),
-    'text': map-get($shades, 'shade-5'),
-    'heading': map-get($shades, 'shade-6'),
-  );
+  $theme-color: map-get($theme-vars, 'theme-color');
+  $base-color: map-get($theme-vars, 'base-color');
 
   [data-theme='#{$theme-name}'] {
-    @each $name, $color in $shades {
+    @each $name, $color in $theme-color {
       --#{''+$name}: #{$color};
     }
-
-    @each $name, $color in $colors {
+    @each $name, $color in $base-color {
       --#{''+$name}: #{$color};
-    }
-
-    @each $name, $color in $theme-mode {
-      --theme-#{''+$name}: #{$color};
     }
   }
+  // @media (prefers-color-scheme: '#{$theme-name}') {
+  // }
 }
-// @media (prefers-color-scheme: #{$theme-name}) {
-// }
 
 body {
   background-color: var(--theme-bg);
-  border-color: var(--theme-border);
   color: var(--theme-text);
   transition: $transition-bg;
 }

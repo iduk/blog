@@ -10,7 +10,7 @@ $header-h: 60px;
   right: 0;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-color: var(--theme-border);
+  border-color: var(--gray-1);
   height: $header-h;
   background-color: inherit;
   background-color: transparent;
@@ -120,4 +120,8 @@ $header-h: 60px;
   100% {
     background-position-x: 1000px;
   }
+}
+
+#aaa {
+  position: relative;
 }

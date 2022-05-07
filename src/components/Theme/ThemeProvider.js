@@ -19,10 +19,10 @@ export default function ThemeProvider({ children }) {
 
     if (theme === 'dark') {
       setMode('light')
-      document.body.setAttribute('data-theme', 'light')
+      document.documentElement.setAttribute('data-theme', 'light')
     } else {
       setMode('dark')
-      document.body.setAttribute('data-theme', 'dark')
+      document.documentElement.setAttribute('data-theme', 'dark')
     }
   }
 
@@ -31,13 +31,13 @@ export default function ThemeProvider({ children }) {
 
     if (currentTheme) {
       setTheme(currentTheme)
-      document.body.setAttribute('data-theme', currentTheme)
+      document.documentElement.setAttribute('data-theme', currentTheme)
       if (currentTheme === 'dark') {
         toggleTheme === true
       }
     } else {
-      setMode('dark')
-      document.body.setAttribute('data-theme', 'dark')
+      setTheme('dark')
+      document.documentElement.setAttribute('data-theme', 'dark')
     }
   }, [theme])
 

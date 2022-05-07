@@ -29,14 +29,17 @@ function Home() {
     <>
       {loading === false ? (
         <div className={cx('home')}>
-          <p>dsafsdf</p>
-          <img src={Svg} width={'50px'} height={'50px'} alt="" />
-          <img
-            src={'./static/images/design.svg'}
-            width={'50px'}
-            height={'50px'}
-            alt=""
-          />
+          <p className="pb-1">Layer Background</p>
+          <section className={cx('layer')}>
+            <p>dsafsdf</p>
+            <img src={Svg} width={'50px'} height={'50px'} />
+            <img
+              src={'./static/images/design.svg'}
+              width={'50px'}
+              height={'50px'}
+              alt=""
+            />
+          </section>
         </div>
       ) : (
         <Loading />

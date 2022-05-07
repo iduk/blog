@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { getNavList } from '../../data/nav'
-import classnames from 'classnames/bind'
 import styles from './GlobalNav.module.scss'
+import classnames from 'classnames/bind'
 import { CSSTransition, Transition } from 'react-transition-group'
 import styled, { keyframes } from 'styled-components'
-
 const cx = classnames.bind(styles)
 
 function GlobalNav() {
@@ -36,7 +35,7 @@ function GlobalNav() {
 
   return (
     <>
-      <header className={cx('global-nav')}>
+      <header id={cx('aaa')} className={cx('global-nav')}>
         <div className={cx('nav-wrapper')}>
           <Link to="/" className={cx('logo', 'tracking-in-expand')}>
             PICTOR

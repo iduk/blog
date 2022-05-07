@@ -1,25 +1,25 @@
-@use "sass:color";
+@use 'sass:color';
 
-:root {
-    @each $name, $value in $color-palette{
-        --#{''+$name}: #{$value};      
-    }
-}
+// :root {
+//     @each $name, $value in $color-palette{
+//         --#{''+$name}: #{$value};
+//     }
+// }
 
 $color-property: (
   bg: background-color,
   color: color,
-  border: border-color
+  border: border-color,
 );
 
 // bg, border, color Classes
 @each $name, $value in $color-palette {
   @each $selector, $property in $color-property {
-    .#{$selector}-#{''+$name} {
+    .#{$selector}-#{'' + $name} {
       #{$property}: $value;
-      
+
       @if $selector == 'bg' {
-        @include color-invert($value)
+        @include color-invert($value);
       }
     }
   }
@@ -35,6 +35,5 @@ $color-property: (
 // }
 
 /* ------------------- colors shade ------------------- */
-
 
 /* ------------------- colors mixin ------------------- */

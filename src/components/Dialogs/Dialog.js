@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { useTransition, animated } from 'react-spring'
-import './Dialog.scss'
+import styles from './Dialog.module.scss'
+import classnames from 'classnames/bind'
+const cx = classnames.bind(styles)
 
 const dialogRoot = document.getElementById('dialog-root')
 
@@ -9,12 +11,12 @@ const Dialog = ({ open, toggle, children, ...props }) => {
   return open
     ? ReactDOM.createPortal(
         <>
-          <div className="dialog" onClick={(e) => e.stopPropagation()}>
-            <div className={`dialog-content ${props.className}`}>
+          <div className={cx('dialog')} onClick={(e) => e.stopPropagation()}>
+            <div className={cx('dialog-content', props.className)}>
               {children}
             </div>
           </div>
-          <div className="dialog-backdrop" onClick={() => toggle()}></div>
+          <div className={cx('dialog-backdrop')} onClick={() => toggle()}></div>
         </>,
         dialogRoot
       )

@@ -3,11 +3,12 @@ const path = require('path')
 const glob = require('glob')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 const purgecss = require('@fullhuman/postcss-purgecss')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-const devMode = process.env.NODE_ENV !== 'production'
+const DEV_PATH = process.env.NODE_ENV !== 'production'
 const ASSET_PATH = process.env.ASSET_PATH || '/'
 
 // Basic Path
@@ -17,10 +18,13 @@ const PATHS = {
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+
+  entry: {
+    main: './src/index.js',
+  },
 
   output: {
-    filename: '[id].bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, './dist'),
     assetModuleFilename: 'static/[name][ext]', // 리소스 경로 구성
     publicPath: ASSET_PATH,
@@ -34,6 +38,20 @@ module.exports = {
 
   // 최적화 설정
   optimization: {
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin({
+        minimizerOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true },
+            },
+          ],
+        },
+      }),
+    ],
+
     splitChunks: {
       cacheGroups: {
         styles: {
@@ -46,7 +64,8 @@ module.exports = {
     },
   },
 
-  devtool: 'cheap-source-map',
+  devtool: DEV_PATH ? 'cheap-source-map' : false,
+
   devServer: {
     static: './dist',
     port: 3333,
@@ -72,17 +91,19 @@ module.exports = {
 
       // css & scss
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.((c|sa|sc)ss)$/i,
         use: [
-          devMode ? MiniCssExtractPlugin.loader : 'style-loader',
+          DEV_PATH ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
               sourceMap: false,
+              esModule: true,
+              // modules: true, // 전역
               modules: {
                 auto: true,
-                localIdentName: '[local]_[hash:base64]',
+                localIdentName: '[local]_[sha1:hash:hex:5]',
               },
             },
           },
@@ -93,12 +114,14 @@ module.exports = {
                 plugins: [
                   'postcss-preset-env',
                   [
+                    // 사용안한스타일제거
                     '@fullhuman/postcss-purgecss',
                     {
                       content: [
                         path.join(__dirname, './public/index.html'),
                         ...glob.sync(`${path.join(__dirname, 'src')}/**/*.js`, {
                           nodir: true,
+                          nocomment: true,
                         }),
                       ],
                     },
@@ -132,6 +155,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: 'static/images/[name].[ext]',
+              limit: 8192,
             },
           },
         ],
