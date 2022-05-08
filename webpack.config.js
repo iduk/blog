@@ -7,10 +7,11 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 const purgecss = require('@fullhuman/postcss-purgecss')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-
-const isDev = process.env.NODE_ENV !== 'production'
+const dotenv = require('dotenv')
+dotenv.config()
 
 const ASSET_PATH = process.env.ASSET_PATH || '/'
+const isDev = process.env.NODE_ENV !== 'production'
 
 // Basic Path
 const PATHS = {
@@ -176,10 +177,9 @@ module.exports = {
       chunkFilename: '[id].[contenthash].css',
     }),
 
-    new webpack.DefinePlugin({
-      'process.env': {
-        ASSET_PATH: JSON.stringify(ASSET_PATH),
-      },
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+      DEBUG: false,
     }),
 
     new CleanWebpackPlugin(),

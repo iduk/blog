@@ -46,7 +46,7 @@ export default function App() {
     <>
       <Routes>
         {/* Nav Layout */}
-        <Route path={process.env.PUBLIC_URL + '/'} element={<BaseLayout />}>
+        <Route path={'/'} element={<BaseLayout />}>
           <Route index element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/posts/*" element={<Posts />}>
