@@ -22703,7 +22703,7 @@ var years = year.range;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "static/images/design.svg");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "static/images/3faeb76fdce96da0ec8d07b6f100b4bd.svg");
 
 /***/ }),
 
@@ -22715,7 +22715,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "static/images/macbook.png");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "static/images/bad8db37db28b541c51a079a6a21d6c9.png");
 
 /***/ }),
 
