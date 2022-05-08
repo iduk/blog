@@ -4,7 +4,7 @@
   "private": "false",
   "author": "iduk",
   "license": "MIT",
-  "homepage": "https://github.com/iduk/iduk.github.io/",
+  "homepage": "https://iduk.github.io/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npx webpack --watch",

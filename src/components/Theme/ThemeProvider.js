@@ -14,8 +14,8 @@ export default function ThemeProvider({ children }) {
   const toggleTheme = () => {
     const currentTheme =
       window.localStorage.getItem('theme') || systemPrefersDark.matches
-        ? 'dark'
-        : 'light'
+    // ? 'dark'
+    // : 'light'
 
     if (theme === 'dark') {
       setMode('light')
@@ -27,17 +27,18 @@ export default function ThemeProvider({ children }) {
   }
 
   useEffect(() => {
-    const currentTheme = window.localStorage.getItem('theme')
+    const currentTheme =
+      window.localStorage.getItem('theme') || systemPrefersDark.matches
 
-    if (currentTheme) {
-      setTheme(currentTheme)
-      document.documentElement.setAttribute('data-theme', currentTheme)
-      if (currentTheme === 'dark') {
+    if (currentTheme === 'dark') {
+      setMode('dark')
+      document.documentElement.setAttribute('data-theme', 'dark')
+      if (!currentTheme) {
         toggleTheme === true
       }
     } else {
-      setTheme('dark')
-      document.documentElement.setAttribute('data-theme', 'dark')
+      setMode('light')
+      document.documentElement.setAttribute('data-theme', 'light')
     }
   }, [theme])
 

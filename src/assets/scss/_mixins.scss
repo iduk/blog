@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'sass:meta';
 
-/* ------------------- Breakpoints ------------------- */
+/* ------------------- Breakpoints Widths ------------------- */
 @mixin screen-up($breakpoint) {
   @if map.has-key($breakpoints, $breakpoint) {
     @media #{meta.inspect(map.get($breakpoints, $breakpoint))} {
@@ -22,41 +22,6 @@
   } @else {
     @warn "Unfortunately, no value could be retrieved from `#{$widths}`. "
         + "Available breakpoints are: #{map.keys($max-widths)}.";
-  }
-}
-
-/* ------------------- color invert (yiq) ------------------- */
-// Theme Color Invert
-@mixin color-invert($background) {
-  $r: red($background);
-  $g: green($background);
-  $b: blue($background);
-
-  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) * 0.001;
-
-  @if ($yiq >= 128) {
-    color: black;
-  } @else {
-    color: white;
-  }
-}
-
-/* ------------------- input placeholder ------------------- */
-@mixin input-placeholder {
-  &.placeholder {
-    @content;
-  }
-  &:-moz-placeholder {
-    @content;
-  }
-  &::-moz-placeholder {
-    @content;
-  }
-  &:-ms-input-placeholder {
-    @content;
-  }
-  &::-webkit-input-placeholder {
-    @content;
   }
 }
 

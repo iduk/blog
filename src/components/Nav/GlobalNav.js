@@ -19,14 +19,14 @@ function GlobalNav() {
 
   const defaultStyle = {
     transition: `all ${duration}ms ease-in-out`,
-    top: '-100vh',
+    right: '-100%',
   }
 
   const transitionStyles = {
-    entering: { top: '0' },
-    entered: { top: '0' },
-    exiting: { top: '-100vh' },
-    exited: { top: '-100vh' },
+    entering: { right: '0' },
+    entered: { right: '0' },
+    exiting: { right: '-100%' },
+    exited: { right: '-100%' },
   }
 
   useEffect(() => {
@@ -38,9 +38,12 @@ function GlobalNav() {
       <header id={cx('aaa')} className={cx('global-nav')}>
         <div className={cx('nav-wrapper')}>
           <Link to="/" className={cx('logo', 'tracking-in-expand')}>
-            PICTOR
+            ㅍㅌ
           </Link>
-          <button className={cx('toggler')} onClick={toggleNav} />
+          <button
+            className={cx('toggler', isCollapsedNav ? 'active' : '')}
+            onClick={toggleNav}
+          />
         </div>
 
         <Transition in={isCollapsedNav} timeout={duration}>

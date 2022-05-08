@@ -187,8 +187,13 @@ module.exports = {
       chunkFilename: '[id].[contenthash].css',
     }),
 
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+    }),
+
     new webpack.DefinePlugin({
       'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
+      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
 
     new CleanWebpackPlugin(),

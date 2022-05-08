@@ -29,6 +29,7 @@ function Home() {
     <>
       {loading === false ? (
         <div className={cx('home')}>
+          <h1 className="text-primary">픽터월드</h1>
           <p className="pb-1">Layer Background</p>
           <section className={cx('layer')}>
             <p>dsafsdf</p>

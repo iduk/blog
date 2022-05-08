@@ -1,48 +1,75 @@
-$theme: (
+$theme-mode: (
   'light': (
-    'base-color': $color-palette,
+    'color-palette': $color-palette,
+    'grays': (
+      'shade-0': $gray-0,
+      'shade-1': $gray-1,
+      'shade-2': $gray-2,
+      'shade-3': $gray-3,
+      'shade-4': $gray-4,
+      'shade-5': $gray-5,
+      'shade-6': $gray-6,
+    ),
     'theme-color': (
-      'theme-bg': $gray-1,
-      'theme-layer': $gray-2,
-      'theme-border': $gray-3,
-      'theme-text': $gray-6,
-      'theme-heading': $gray-7,
-      'theme-accent': $gray-9,
+      'bg': #fff,
+      'layer': $gray-1,
+      'heading': $gray-6,
+      'text': $gray-5,
+      'border': rgba(#000, 0.1),
+      'accent': $red,
     ),
   ),
   'dark': (
-    'base-color': $color-palette,
+    'color-palette': $color-palette,
+    'grays': (
+      'shade-0': $gray-6,
+      'shade-1': $gray-5,
+      'shade-2': $gray-4,
+      'shade-3': $gray-3,
+      'shade-4': $gray-2,
+      'shade-5': $gray-1,
+      'shade-6': $gray-0,
+    ),
     'theme-color': (
-      'theme-bg': $gray-9,
-      'theme-layer': $gray-7,
-      'theme-border': $gray-6,
-      'theme-text': $gray-3,
-      'theme-heading': $gray-2,
-      'theme-accent': $gray-1,
+      'bg': #000,
+      'layer': $gray-6,
+      'heading': $gray-2,
+      'text': $gray-3,
+      'border': rgba(#fff, 0.1),
+      'accent': lighten($red, 10%),
     ),
   ),
 );
 
 $transition-bg: all 0.1s cubic-bezier(0.185, 0.475, 0.895, 0.39);
 
-@each $theme-name, $theme-vars in $theme {
-  $theme-color: map-get($theme-vars, 'theme-color');
-  $base-color: map-get($theme-vars, 'base-color');
+@mixin setTheme($theme-mode) {
+  @each $theme-name, $theme-value in $theme-mode {
+    $color-palette: map-get($theme-value, 'color-palette');
+    $grays: map-get($theme-value, 'grays');
+    $theme-color: map-get($theme-value, 'theme-color');
 
-  [data-theme='#{$theme-name}'] {
-    @each $name, $color in $theme-color {
-      --#{''+$name}: #{$color};
+    [data-theme='#{$theme-name}'] {
+      @each $name, $color in $color-palette {
+        --#{''+$name}: #{$color};
+      }
+      @each $name, $color in $grays {
+        --#{''+$name}: #{$color};
+      }
+      @each $name, $color in $theme-color {
+        --theme-#{''+$name}: #{$color};
+      }
     }
-    @each $name, $color in $base-color {
-      --#{''+$name}: #{$color};
-    }
+    // @media (prefers-color-scheme: '#{$theme-name}') {
+    // }
   }
-  // @media (prefers-color-scheme: '#{$theme-name}') {
-  // }
 }
+
+@include setTheme($theme-mode);
 
 body {
   background-color: var(--theme-bg);
   color: var(--theme-text);
+  border-color: var(--theme-border);
   transition: $transition-bg;
 }

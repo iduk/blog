@@ -6,13 +6,29 @@
 //     }
 // }
 
+// Theme Color Invert
+@mixin color-invert($background) {
+  $r: red($background);
+  $g: green($background);
+  $b: blue($background);
+
+  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) * 0.001;
+
+  @if ($yiq >= 128) {
+    color: black;
+  } @else {
+    color: white;
+  }
+}
+
+// selector Property
 $color-property: (
-  bg: background-color,
-  color: color,
-  border: border-color,
+  'bg': background-color,
+  'text': color,
+  'border': border-color,
 );
 
-// bg, border, color Classes
+// Base Colors (bg-*, border-*, color-*)
 @each $name, $value in $color-palette {
   @each $selector, $property in $color-property {
     .#{$selector}-#{'' + $name} {
@@ -33,7 +49,3 @@ $color-property: (
 // div {
 //   background-color: #{hexToRGB($black, 0.5)};
 // }
-
-/* ------------------- colors shade ------------------- */
-
-/* ------------------- colors mixin ------------------- */

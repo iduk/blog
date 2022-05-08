@@ -1,9 +1,8 @@
-@use "sass:math";
+@use 'sass:math';
 
 // grid
 @for $i from 1 through $col-count {
   .col-#{$i} {
-    // flex-basis: (100 / ($col-count / $i)) * 1%;
     flex-basis: calc(100 / ($col-count / $i)) * 1%;
     padding: 0 $gutter-size;
   }
