@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 // import TypeIt from 'typeit-react'
 import Svg from '../assets/images/design.svg'
+import Png from '../assets/images/icon.png'
 
 const cx = classnames.bind(styles)
 
@@ -35,7 +36,13 @@ function Home() {
             <p>dsafsdf</p>
             <img src={Svg} width={'50px'} height={'50px'} />
             <img
-              src={'./static/images/design.svg'}
+              src={'./assets/images/design.svg'}
+              width={'50px'}
+              height={'50px'}
+              alt=""
+            />
+            <img
+              src={'../assets/images/icon.png'}
               width={'50px'}
               height={'50px'}
               alt=""

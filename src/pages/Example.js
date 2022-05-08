@@ -144,6 +144,7 @@ function Example() {
               className="effect--child img-fluid"
               src={Img}
               alt="Image description"
+              width={'100%'}
             />
           </figure>
         </article>

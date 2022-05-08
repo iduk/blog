@@ -89,13 +89,16 @@ module.exports = {
               sourceMap: false,
               esModule: true,
               // modules: true, // 전역
-              modules: {
-                auto: true,
-                exportGlobals: true,
-                localIdentName: isDev
-                  ? '[local]_[hash:base64:5]'
-                  : '[sha1:hash:hex:5]',
-              },
+              modules: isDev
+                ? {
+                    auto: true,
+                    exportGlobals: true,
+                    localIdentName: '[local]_[sha1:hash:hex:5]',
+                  }
+                : {
+                    auto: true,
+                    localIdentName: '[sha1:hash:hex:5]',
+                  },
             },
           },
           {
@@ -145,7 +148,9 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'static/images/[name].[ext]',
+              name: isDev
+                ? 'static/images/[name].[contenthash].[ext]'
+                : 'static/images/[contenthash].[ext]',
               limit: 8192,
             },
           },
@@ -158,7 +163,9 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'static/fonts/[name].[ext]',
+              name: isDev
+                ? 'static/fonts/[name].[contenthash].[ext]'
+                : 'static/fonts/[contenthash].[ext]',
             },
           },
         ],
