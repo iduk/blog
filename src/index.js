@@ -7,7 +7,7 @@ import ThemeProvider from './components/Theme/ThemeProvider'
 import './assets/scss/main.scss'
 
 ReactDOM.render(
-  <BrowserRouter history={history} basename={process.env.PUBLIC_URL}>
+  <BrowserRouter history={history}>
     <ThemeProvider>
       <App />
     </ThemeProvider>
