@@ -103,7 +103,7 @@ module.exports = {
               // modules: true, // 전역
               modules: {
                 auto: true,
-                localIdentName: '[local]_[sha1:hash:hex:5]',
+                localIdentName: '[sha1:hash:hex:5]',
               },
             },
           },
