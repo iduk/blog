@@ -65926,7 +65926,7 @@ module.exports = "data:image/svg+xml,%3Csvg width=%2764%27 height=%2764%27 viewB
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
-module.exports = __webpack_require__.p + "static/NotoSans-Regular.eot";
+module.exports = __webpack_require__.p + "./static/NotoSans-Regular.eot";
 
 /***/ }),
 
@@ -65937,7 +65937,7 @@ module.exports = __webpack_require__.p + "static/NotoSans-Regular.eot";
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
-module.exports = __webpack_require__.p + "static/NotoSans-Regular.otf";
+module.exports = __webpack_require__.p + "./static/NotoSans-Regular.otf";
 
 /***/ }),
 
@@ -65948,7 +65948,7 @@ module.exports = __webpack_require__.p + "static/NotoSans-Regular.otf";
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
-module.exports = __webpack_require__.p + "static/NotoSans-Regular.woff";
+module.exports = __webpack_require__.p + "./static/NotoSans-Regular.woff";
 
 /***/ }),
 
@@ -65959,7 +65959,7 @@ module.exports = __webpack_require__.p + "static/NotoSans-Regular.woff";
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
-module.exports = __webpack_require__.p + "static/NotoSans-Regular.woff2";
+module.exports = __webpack_require__.p + "./static/NotoSans-Regular.woff2";
 
 /***/ }),
 
