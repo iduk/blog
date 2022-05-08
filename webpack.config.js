@@ -11,7 +11,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const ASSET_PATH = process.env.ASSET_PATH || '/'
-const isDev = process.env.NODE_ENV !== 'production'
+const isDev = process.env.NODE_ENV == 'development'
 
 // Basic Path
 const PATHS = {
@@ -28,7 +28,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, './dist'),
-    assetModuleFilename: 'static/[name][ext]', // 리소스 경로 구성
+    assetModuleFilename: './static/[name][ext]', // 리소스 경로 구성
     publicPath: ASSET_PATH,
     asyncChunks: true,
     clean: true, // 생성된 파일만 보임
@@ -92,8 +92,9 @@ module.exports = {
               modules: {
                 auto: true,
                 exportGlobals: true,
-                localIdentName: '[local]_[hash:base64:5]',
-                // localIdentName: '[sha1:hash:hex:5]',
+                localIdentName: isDev
+                  ? '[local]_[hash:base64:5]'
+                  : '[sha1:hash:hex:5]',
               },
             },
           },
@@ -170,6 +171,9 @@ module.exports = {
       chunks: ['main'],
       template: './public/index.html',
       filename: 'index.html',
+      templateParameters: {
+        env: process.env.NODE_ENV === 'development' ? 'DEV' : '',
+      },
     }),
 
     new MiniCssExtractPlugin({
@@ -177,11 +181,6 @@ module.exports = {
       chunkFilename: '[id].[contenthash].css',
     }),
 
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
-      DEBUG: false,
-    }),
-
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({}),
   ],
 }
