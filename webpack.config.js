@@ -8,7 +8,8 @@ const PurgecssPlugin = require('purgecss-webpack-plugin')
 const purgecss = require('@fullhuman/postcss-purgecss')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-const DEV_PATH = process.env.NODE_ENV !== 'production'
+const isDev = process.env.NODE_ENV !== 'production'
+
 const ASSET_PATH = process.env.ASSET_PATH || '/'
 
 // Basic Path
@@ -38,20 +39,6 @@ module.exports = {
 
   // 최적화 설정
   optimization: {
-    minimize: true,
-    minimizer: [
-      new CssMinimizerPlugin({
-        minimizerOptions: {
-          preset: [
-            'default',
-            {
-              discardComments: { removeAll: true },
-            },
-          ],
-        },
-      }),
-    ],
-
     splitChunks: {
       cacheGroups: {
         styles: {
@@ -64,7 +51,7 @@ module.exports = {
     },
   },
 
-  devtool: DEV_PATH ? 'cheap-source-map' : false,
+  devtool: isDev ? 'cheap-source-map' : false,
 
   devServer: {
     static: './dist',
@@ -93,7 +80,7 @@ module.exports = {
       {
         test: /\.((c|sa|sc)ss)$/i,
         use: [
-          DEV_PATH ? MiniCssExtractPlugin.loader : 'style-loader',
+          isDev ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -103,7 +90,9 @@ module.exports = {
               // modules: true, // 전역
               modules: {
                 auto: true,
-                localIdentName: '[sha1:hash:hex:5]',
+                exportGlobals: true,
+                localIdentName: '[local]_[hash:base64:5]',
+                // localIdentName: '[sha1:hash:hex:5]',
               },
             },
           },
@@ -187,13 +176,10 @@ module.exports = {
       chunkFilename: '[id].[contenthash].css',
     }),
 
-    new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development',
-    }),
-
     new webpack.DefinePlugin({
-      'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
-      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env': {
+        ASSET_PATH: JSON.stringify(ASSET_PATH),
+      },
     }),
 
     new CleanWebpackPlugin(),

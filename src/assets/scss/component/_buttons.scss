@@ -10,13 +10,13 @@
   border-width: $btn-border-width;
   font-size: $text-base;
   transition: background 0.2s ease;
-  cursor: pointer
+  cursor: pointer;
 }
 
 // bg,border,invert-color & hover,focus
 @mixin button-theme($color-palette) {
   @each $name, $color in $color-palette {
-    &-#{''+$name} {
+    &-#{'' + $name} {
       background-color: #{$color};
       border-color: #{$color};
       @include color-invert($color);
@@ -31,14 +31,6 @@
     }
   }
 }
-
-// Button xs, sm, md, lg, xl
-
-// Button Outline
-
-// Button Tertiery
-
-
 
 .btn {
   @extend %btn;

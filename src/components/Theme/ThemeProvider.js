@@ -3,26 +3,22 @@ import ThemeContext from './ThemeContext'
 import styled from 'styled-components'
 
 export default function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState()
   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)')
 
-  const setMode = (mode) => {
-    window.localStorage.setItem('theme', mode)
-    setTheme(mode)
+  const setMode = (theme) => {
+    window.localStorage.setItem('theme', theme)
+    setTheme(theme)
   }
 
   const toggleTheme = () => {
     const currentTheme =
       window.localStorage.getItem('theme') || systemPrefersDark.matches
-    // ? 'dark'
-    // : 'light'
 
-    if (theme === 'dark') {
+    if (currentTheme === 'dark') {
       setMode('light')
-      document.documentElement.setAttribute('data-theme', 'light')
     } else {
       setMode('dark')
-      document.documentElement.setAttribute('data-theme', 'dark')
     }
   }
 
@@ -30,15 +26,15 @@ export default function ThemeProvider({ children }) {
     const currentTheme =
       window.localStorage.getItem('theme') || systemPrefersDark.matches
 
-    if (currentTheme === 'dark') {
-      setMode('dark')
-      document.documentElement.setAttribute('data-theme', 'dark')
-      if (!currentTheme) {
+    if (currentTheme === 'light') {
+      setMode('light')
+      document.documentElement.setAttribute('data-theme', 'light')
+      if (currentTheme) {
         toggleTheme === true
       }
     } else {
-      setMode('light')
-      document.documentElement.setAttribute('data-theme', 'light')
+      setMode('dark')
+      document.documentElement.setAttribute('data-theme', 'dark')
     }
   }, [theme])
 
@@ -58,8 +54,8 @@ function ThemeSwitch() {
     <SwitchBox>
       <div className="d-grid">
         <button
-          className={`btn py-1 px-3 rounded-full ${
-            theme === 'dark' ? 'bg-light text-black' : 'bg-dark text-white'
+          className={`btn p-2 rounded-full ${
+            theme === 'dark' ? 'bg-light' : 'bg-dark'
           }`}
           onClick={toggleTheme}
         >
