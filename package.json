@@ -4,14 +4,14 @@
   "private": "false",
   "author": "iduk",
   "license": "MIT",
-  "homepage": "https://iduk.github.io/blog/",
+  "homepage": "iduk.github.io/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npx webpack --watch",
     "server": "node server.js",
     "start": "npx webpack serve --open",
     "build": "npx webpack --mode=production",
-    "deploy": "yarn build && gh-pages -d build",
+    "deploy": "yarn build && gh-pages -d dist",
     "lint": "eslint \"src/**/*.js\" --fix"
   },
   "devDependencies": {
