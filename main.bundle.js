@@ -13563,7 +13563,8 @@ function Example() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "effect--child img-fluid",
     src: _assets_images_macbook_png__WEBPACK_IMPORTED_MODULE_1__["default"],
-    alt: "Image description"
+    alt: "Image description",
+    width: '100%'
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Document, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, "Scroll Snap"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "scroll-snap",
     style: {
