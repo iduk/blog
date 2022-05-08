@@ -11,7 +11,7 @@
     "server": "node server.js",
     "start": "npx webpack serve --open",
     "build": "npx webpack --mode=production",
-    "deploy": "yarn build && gh-pages -d dist",
+    "deploy": "yarn build && gh-pages -d build",
     "lint": "eslint \"src/**/*.js\" --fix"
   },
   "devDependencies": {
