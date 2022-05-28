@@ -10,7 +10,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const dotenv = require('dotenv')
 dotenv.config()
 
-const ASSET_PATH = process.env.ASSET_PATH || '/'
+const isAsset = process.env.ASSET_PATH || '/'
 const isDev = process.env.NODE_ENV == 'development'
 
 // Basic Path
@@ -29,7 +29,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, './dist'),
     assetModuleFilename: './static/[name][ext]', // 리소스 경로 구성
-    publicPath: ASSET_PATH,
+    publicPath: isAsset,
     asyncChunks: true,
     clean: true, // 생성된 파일만 보임
   },
