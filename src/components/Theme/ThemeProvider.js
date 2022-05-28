@@ -3,45 +3,29 @@ import ThemeContext from './ThemeContext'
 import styled from 'styled-components'
 
 export default function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState()
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)')
-
-  const setMode = (theme) => {
-    window.localStorage.setItem('theme', theme)
-    setTheme(theme)
-  }
+  const [theme, setTheme] = useState(null)
+  const initialTheme = () => localStorage.getItem('ThemeColor')
 
   const toggleTheme = () => {
-    const currentTheme =
-      window.localStorage.getItem('theme') || systemPrefersDark.matches
-
-    if (currentTheme === 'dark') {
-      setMode('light')
-    } else {
-      setMode('dark')
-    }
+    setTheme((theme) => (theme === 'light' || null ? 'dark' : 'light'))
   }
 
   useEffect(() => {
-    const currentTheme =
-      window.localStorage.getItem('theme') || systemPrefersDark.matches
+    localStorage.setItem('ThemeColor', theme)
 
-    if (currentTheme === 'light') {
-      setMode('light')
+    if (theme === 'light') {
       document.documentElement.setAttribute('data-theme', 'light')
-      if (currentTheme) {
-        toggleTheme === true
-      }
-    } else {
-      setMode('dark')
+      console.log('Light Mode')
+    } else if (theme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark')
+      console.log('Dark Mode')
     }
   }, [theme])
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <ThemeSwitch />
       {children}
+      {/* <ThemeSwitch /> */}
     </ThemeContext.Provider>
   )
 }
@@ -54,12 +38,10 @@ function ThemeSwitch() {
     <SwitchBox>
       <div className="d-grid">
         <button
-          className={`btn p-2 rounded-full ${
-            theme === 'dark' ? 'bg-light' : 'bg-dark'
-          }`}
+          className={`btn p-2 rounded-full ${theme ? 'bg-light' : 'bg-dark'}`}
           onClick={toggleTheme}
         >
-          {theme === 'dark' ? 'Light Mode 🌈' : 'Dark Mode 🌙'}
+          {theme ? 'Light Mode 🌈' : 'Dark Mode 🌙'}
         </button>
       </div>
     </SwitchBox>

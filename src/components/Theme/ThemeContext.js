@@ -1,6 +1,6 @@
-import React from 'react'
+import { createContext } from 'react'
 
-const ThemeContext = React.createContext({
-  theme: true,
+const ThemeContext = createContext({
+  theme: 'null',
 })
 export default ThemeContext
