@@ -1,6 +1,6 @@
 $theme-mode: (
   'light': (
-    'color-palette': $color-palette,
+    'palette': $color-palette,
     'grays': (
       'shade-0': $gray-0,
       'shade-1': $gray-1,
@@ -10,7 +10,7 @@ $theme-mode: (
       'shade-5': $gray-5,
       'shade-6': $gray-6,
     ),
-    'theme-color': (
+    'theme': (
       'bg': #fff,
       'layer': $gray-1,
       'heading': $gray-6,
@@ -20,7 +20,7 @@ $theme-mode: (
     ),
   ),
   'dark': (
-    'color-palette': $color-palette,
+    'palette': $color-palette,
     'grays': (
       'shade-0': $gray-6,
       'shade-1': $gray-5,
@@ -30,7 +30,7 @@ $theme-mode: (
       'shade-5': $gray-1,
       'shade-6': $gray-0,
     ),
-    'theme-color': (
+    'theme': (
       'bg': #000,
       'layer': $gray-6,
       'heading': $gray-2,
@@ -44,28 +44,57 @@ $theme-mode: (
 $transition-bg: all 0.1s cubic-bezier(0.185, 0.475, 0.895, 0.39);
 
 @mixin setTheme($theme-mode) {
-  @each $theme-name, $theme-value in $theme-mode {
-    $color-palette: map-get($theme-value, 'color-palette');
-    $grays: map-get($theme-value, 'grays');
-    $theme-color: map-get($theme-value, 'theme-color');
+  @each $setName, $setValue in $theme-mode {
+    $palette: map-get($setValue, 'palette');
+    $grays: map-get($setValue, 'grays');
+    $theme: map-get($setValue, 'theme');
 
-    [data-theme='#{$theme-name}'] {
-      @each $name, $color in $color-palette {
-        --#{''+$name}: #{$color};
-      }
-      @each $name, $color in $grays {
-        --#{''+$name}: #{$color};
-      }
-      @each $name, $color in $theme-color {
-        --theme-#{''+$name}: #{$color};
+    @if $setName == 'light' {
+      :root {
+        @each $name, $color in $palette {
+          --#{''+$name}: #{$color};
+        }
+        @each $name, $color in $grays {
+          --#{''+$name}: #{$color};
+        }
+        @each $name, $color in $theme {
+          --theme-#{''+$name}: #{$color};
+        }
       }
     }
-    // @media (prefers-color-scheme: '#{$theme-name}') {
-    // }
+  }
+}
+
+@mixin setDark($theme-mode) {
+  @each $setName, $setValue in $theme-mode {
+    $palette: map-get($setValue, 'palette');
+    $grays: map-get($setValue, 'grays');
+    $theme: map-get($setValue, 'theme');
+
+    @if $setName == 'dark' {
+      :root {
+        @media (prefers-color-scheme: dark) {
+          @each $name, $color in $palette {
+            --#{''+$name}: #{$color};
+          }
+          @each $name, $color in $grays {
+            --#{''+$name}: #{$color};
+          }
+          @each $name, $color in $theme {
+            --theme-#{''+$name}: #{$color};
+          }
+        }
+      }
+    }
   }
 }
 
 @include setTheme($theme-mode);
+// @include setDark($theme-mode);
+
+@media (prefers-color-scheme: dark) {
+  @include setDark($theme-mode);
+}
 
 body {
   background-color: var(--theme-bg);
