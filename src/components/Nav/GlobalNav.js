@@ -38,7 +38,7 @@ function GlobalNav() {
       <header id={cx('aaa')} className={cx('global-nav')}>
         <div className={cx('nav-wrapper')}>
           <Link to="/" className={cx('logo', 'tracking-in-expand')}>
-            ㅍㅌ
+            픽터
           </Link>
           <button
             className={cx('toggler', isCollapsedNav ? 'active' : '')}
@@ -54,7 +54,7 @@ function GlobalNav() {
                 ...transitionStyles[state],
               }}
               className={cx('navbar')}
-              id="menu"
+              id={cx('menu')}
             >
               <ul className={cx('nav-list')}>
                 {navlist.map((item, id) => (
