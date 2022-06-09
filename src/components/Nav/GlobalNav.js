@@ -54,7 +54,6 @@ function GlobalNav() {
                 ...transitionStyles[state],
               }}
               className={cx('navbar')}
-              id={cx('menu')}
             >
               <ul className={cx('nav-list')}>
                 {navlist.map((item, id) => (
