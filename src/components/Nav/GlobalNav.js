@@ -35,7 +35,7 @@ function GlobalNav() {
 
   return (
     <>
-      <header id={cx('aaa')} className={cx('global-nav')}>
+      <header className={cx('global-nav')}>
         <div className={cx('nav-wrapper')}>
           <Link to="/" className={cx('logo', 'tracking-in-expand')}>
             픽터
@@ -54,6 +54,7 @@ function GlobalNav() {
                 ...transitionStyles[state],
               }}
               className={cx('navbar')}
+              id="menu"
             >
               <ul className={cx('nav-list')}>
                 {navlist.map((item, id) => (
