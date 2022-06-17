@@ -1,34 +1,60 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import styled, { createGlobalStyle } from 'styled-components'
-import { Transition, useSpring, animated } from 'react-spring'
+import styles from './Test.module.scss'
+import classnames from 'classnames/bind'
+const cx = classnames.bind(styles)
+
+import { gql, useQuery } from '@apollo/client'
+import { Link, useNavigate } from 'react-router-dom'
+
+const GET_POSTS = gql`
+  query GetPosts {
+    posts {
+      nodes {
+        id
+        title
+        date
+        featuredImage {
+          node {
+            mediaItemUrl
+          }
+        }
+      }
+    }
+  }
+`
 
 function Test() {
-  const [isOpen, setIsOpen] = useState(false)
+  const { loading, error, data } = useQuery(GET_POSTS)
+  const navigate = useNavigate()
 
-  const props = useSpring({
-    opacity: isOpen ? 1 : 0,
-  })
+  console.log('나여기')
 
-  const openToggle = () => setIsOpen(!isOpen)
+  if (loading) return <p>Loading Posts...</p>
+  if (error) return <p>Something wrong happened!</p>
 
   return (
-    <div
-      className="flex flex-col justify-center w-full relative"
-      style={{ height: '80vh' }}
-    >
-      <animated.div style={props}>
-        <div className="absolute h-56 inset-0 top-8 z-10 bg-dark text-center bg-stone-600">
-          <h1>asdfasdf</h1>
-          <div>asdfasdf</div>
-        </div>
-      </animated.div>
-
-      <div className="absolute bottom-4 z-10 w-full">
-        <button className="btn btn-primary w-full" onClick={openToggle}>
-          Toggle
-        </button>
-      </div>
+    <div>
+      {/* <h1>{data.posts.nodes[4].title}</h1> */}
+      <ul className={cx('post-list')}>
+        {data.posts.nodes.map((post) => (
+          <li key={post.id}>
+            <a
+              className={cx('link')}
+              href={post.featuredImage.node.mediaItemUrl}
+              target="_blank"
+            >
+              <img
+                className={cx('thumb')}
+                src={post.featuredImage.node.mediaItemUrl}
+                alt=""
+              />
+              <h6 className={cx('title')}>{post.title}</h6>
+              <small className={cx('date')}>{post.date}</small>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

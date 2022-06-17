@@ -1,5 +1,11 @@
 import * as React from 'react'
-import { Navigate, useRoutes, Routes, Route } from 'react-router-dom'
+import {
+  Navigate,
+  useRoutes,
+  Routes,
+  Route,
+  BrowserRouter,
+} from 'react-router-dom'
 
 // components
 import BaseLayout from './components/Layouts/BaseLayout'
