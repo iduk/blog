@@ -7,16 +7,31 @@ const cx = classnames.bind(styles)
 import { gql, useQuery } from '@apollo/client'
 import { Link, useNavigate } from 'react-router-dom'
 
+const GET_CATE = gql`
+  query GetCategory($id: ID = "portfolio") {
+    category(id: $id, idType: SLUG) {
+      id
+      name
+    }
+  }
+`
 const GET_POSTS = gql`
-  query GetPosts {
-    posts {
-      nodes {
-        id
-        title
-        date
-        featuredImage {
-          node {
-            mediaItemUrl
+  query GetPosts($id: ID = "portfolio") {
+    category(id: $id, idType: SLUG) {
+      id
+      name
+      posts {
+        nodes {
+          id
+          slug
+          title
+          date
+          excerpt
+          featuredImage {
+            node {
+              mediaItemUrl
+              slug
+            }
           }
         }
       }
@@ -35,22 +50,25 @@ function Test() {
 
   return (
     <div>
-      {/* <h1>{data.posts.nodes[4].title}</h1> */}
+      <h1>{data.category.name}</h1>
       <ul className={cx('post-list')}>
-        {data.posts.nodes.map((post) => (
+        {data.category.posts.nodes.map((post) => (
           <li key={post.id}>
+            <div className={cx('content')}>
+              <h5 className={cx('title')}>{post.title}</h5>
+              <small className={cx('date')}>{post.date}</small>
+
+              <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
+            </div>
             <a
-              className={cx('link')}
+              className={cx('thumb')}
               href={post.featuredImage.node.mediaItemUrl}
               target="_blank"
             >
               <img
-                className={cx('thumb')}
                 src={post.featuredImage.node.mediaItemUrl}
-                alt=""
+                alt={post.title}
               />
-              <h6 className={cx('title')}>{post.title}</h6>
-              <small className={cx('date')}>{post.date}</small>
             </a>
           </li>
         ))}
