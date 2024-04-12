@@ -129,9 +129,6 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               implementation: require.resolve('sass'),
-              sassOptions: {
-                fiber: require('fibers'), // 속도향상
-              },
               additionalData: `
               @import "${PATHS.src}/assets/scss/variables";
               `,

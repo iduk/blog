@@ -1,0 +1,48 @@
+// Displays
+
+// .d-* classes
+@each $name in $displays {
+  .#{$name} {
+    display: #{$name} !important;
+  }
+}
+// add property
+.flex {
+  flex-wrap: wrap;
+}
+
+// flex properties
+@mixin flex-properties($name, $prop, $arr) {
+  @each $mod, $dir in $arr {
+    .#{$name}-#{$mod} {
+      #{$prop}: #{$dir} !important;
+    }
+  }
+}
+// flex spacing
+@mixin flex-spacing($name, $prop, $arr) {
+  @each $mod, $dir in $arr {
+    @if $mod == $dir {
+      @for $i from 0 through $space-count {
+        .#{$mod}-#{$i * 4} {
+          #{$dir}#{$prop}: $spacing * $i !important;
+        }
+      }
+    } @else {
+      @for $i from 0 through $space-count {
+        .#{$i} {
+          #{$prop}: $spacing * $i !important;
+        }
+      }
+    }
+  }
+}
+
+@include flex-properties('flex', 'flex', $flex);
+@include flex-properties('flex', 'flex-wrap', $flex-wrap);
+@include flex-properties('flex', 'flex-direction', $flex-direction);
+@include flex-properties('grow', 'flex-grow', $flex-grow);
+@include flex-properties('shrink', 'flex-shrink', $flex-shrink);
+@include flex-properties('justify', 'justify-content', $justify-content);
+@include flex-properties('align', 'align-items', $align-items);
+@include flex-spacing('gap', '', $gap);

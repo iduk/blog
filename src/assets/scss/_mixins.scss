@@ -1,27 +1,63 @@
-@use 'sass:map';
-@use 'sass:meta';
+//  Breakpoints
+@function breakpoint-next(
+  $name,
+  $breakpoints: $grid-breakpoints,
+  $breakpoint-names: map-keys($breakpoints)
+) {
+  $n: index($breakpoint-names, $name);
+  @return if(
+    $n != null and $n < length($breakpoint-names),
+    nth($breakpoint-names, $n + 1),
+    null
+  );
+}
 
-/* ------------------- Breakpoints Widths ------------------- */
-@mixin screen-up($breakpoint) {
-  @if map.has-key($breakpoints, $breakpoint) {
-    @media #{meta.inspect(map.get($breakpoints, $breakpoint))} {
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+  @return if($next, breakpoint-min($next, $breakpoints) - 0.02, null);
+}
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
+}
+
+@mixin breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
       @content;
     }
   } @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Available breakpoints are: #{map.keys($breakpoints)}.";
+    @content;
+  }
+}
+@mixin breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
   }
 }
 
-// max-width (container-width)
-@mixin screen-down($widths) {
-  @if map.has-key($max-widths, $widths) {
-    @media #{meta.inspect(map.get($max-widths, $widths))} {
-      @content;
-    }
+// Color Invert
+@mixin color-invert($background) {
+  $r: red($background);
+  $g: green($background);
+  $b: blue($background);
+
+  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) * 0.001;
+
+  @if ($yiq >= 128) {
+    color: black;
   } @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$widths}`. "
-        + "Available breakpoints are: #{map.keys($max-widths)}.";
+    color: white;
   }
 }
 

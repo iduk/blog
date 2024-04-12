@@ -1,0 +1,27 @@
+// Border directions & colors
+
+@mixin borders($width) {
+  & {
+    border-width: $width;
+    border-style: solid;
+    border-color: inherit;
+  }
+  @each $name in $border-dir {
+    @if $name {
+      &-#{'' + $name} {
+        border-#{$name}: $width !important;
+        border-style: solid;
+        border-color: inherit;
+      }
+    }
+  }
+  @each $color, $value in $color-palette {
+    &-#{$color} {
+      border-color: var(--#{$color}) !important;
+    }
+  }
+}
+
+.border {
+  @include borders($border-width);
+}

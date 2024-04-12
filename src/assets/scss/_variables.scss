@@ -33,13 +33,16 @@ $color-palette: (
   light: $light,
 ) !default;
 
-$gray-0: '#f6f6f7';
-$gray-1: '#edeeef';
-$gray-2: '#a9abad';
-$gray-3: '#696c70';
-$gray-4: '#878d95';
-$gray-5: '#292d33';
-$gray-6: '#1b1c1d';
+$gray-0: '#F9FAFC';
+$gray-1: '#F2F4F7';
+$gray-2: '#EAECF0';
+$gray-3: '#D0D5DD';
+$gray-4: '#98A2B3';
+$gray-5: '#667085';
+$gray-6: '#475467';
+$gray-7: '#344054';
+$gray-8: '#182230';
+$gray-9: '#101828';
 
 $grays: (
   0: $gray-0,
@@ -49,12 +52,15 @@ $grays: (
   4: $gray-4,
   5: $gray-5,
   6: $gray-6,
+  7: $gray-7,
+  8: $gray-8,
+  9: $gray-9,
 ) !default;
 
 /* ---------------------------------------------------------- 
     Typography
  ---------------------------------------------------------- */
-$text-base: 1rem;
+$text-base: 16px;
 
 $text-sizes: (
   'xs': $text-base * 0.75,
@@ -85,19 +91,212 @@ $font-weight: (
 ) !default;
 
 /* ---------------------------------------------------------- 
-    Grid
+    Typography
  ---------------------------------------------------------- */
+$body-font: 16px !default;
 
-$col-count: 12 !default;
-$gutter-size: 0.5rem !default;
+// 10px = 1rem
+$text-sizes: (
+  'xs': 1.1,
+  'sm': 1.2,
+  'md': 1.6,
+  'lg': 1.8,
+  'xl': 2,
+  '2xl': 2.2,
+  '3xl': 2.4,
+) !default;
+
+// custom
+$headings: (
+  1: 2.8rem,
+  2: 2.4rem,
+  3: 2.2rem,
+  4: 2rem,
+  5: 1.8rem,
+  6: 1.6rem,
+) !default;
+
+$font-weight: (
+  'lighter': 100,
+  'light': 300,
+  'normal': 400,
+  'medium': 500,
+  'bold': 700,
+  'bolder': 900,
+) !default;
+
+$font-style: (
+  normal: 'normal',
+  italic: 'italic',
+  oblique: 'oblique',
+) !default;
+
+$text-align: (
+  left: 'left',
+  center: 'center',
+  right: 'right',
+  justify: 'justify',
+) !default;
 
 /* ---------------------------------------------------------- 
-    Buttons
- ---------------------------------------------------------- */
-$btn-padding-xs: 0.75rem 2rem;
-$btn-padding-sm: 0.825rem 2rem;
-$btn-padding-md: 1rem 2rem;
-$btn-padding-lg: 1.25rem 2rem;
-$btn-padding-xl: 1.5rem 2rem;
+     Display & Flex
+  ---------------------------------------------------------- */
+$displays: (
+  block,
+  inline-block,
+  inline,
+  flex,
+  inline-flex,
+  grid,
+  inline-grid,
+  table,
+  table-row,
+  table-cell,
+  table-caption,
+  none
+) !default;
 
-$btn-border-width: 1px;
+$flex: (
+  '1': 1,
+  'auto': auto,
+  'none': none,
+) !default;
+
+$flex-wrap: (
+  'wrap': wrap,
+  'nowrap': nowrap,
+  'wrap-reverse': wrap-reverse,
+) !default;
+
+$flex-direction: (
+  'row': row,
+  'row-reverse': row-reverse,
+  'column': column,
+  'column-reverse': column-reverse,
+) !default;
+
+$flex-grow: (
+  '0': 0,
+  '1': 1,
+) !default;
+
+$flex-shrink: (
+  '0': 0,
+  '1': 1,
+) !default;
+
+$justify-content: (
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  'between': space-between,
+  'around': space-around,
+) !default;
+
+$align-items: (
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  'baseline': baseline,
+  'stretch': stretch,
+) !default;
+
+$gap: (
+  'gap': gap,
+  'row-gap': row-gap,
+  'column-gap': column-gap,
+) !default;
+
+/* ---------------------------------------------------------- 
+     Grid & Container & BreakPoint
+  ---------------------------------------------------------- */
+// BreakPoint
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1400px,
+  xl: 1600px,
+) !default;
+
+// Cotainer
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 1320px,
+  xl: 1520px,
+) !default;
+
+$grid-count: 12 !default;
+$grid-gutter: 2rem !default;
+
+/* ---------------------------------------------------------- 
+     Border & Radius
+  ---------------------------------------------------------- */
+$border-width: 1px;
+
+$border-dir: (left, right, top, bottom) !default;
+
+$rounded: 0.5rem;
+$rounded-xs: 0.5rem;
+$rounded-sm: 1rem;
+$rounded-lg: 1.25rem;
+$rounded-full: 50%;
+$rounded-none: 0;
+
+$rounded-sizes: (
+  '': $rounded,
+  '-xs': $rounded-xs,
+  '-sm': $rounded-sm,
+  '-lg': $rounded-lg,
+  '-full': $rounded-full,
+  '-none': $rounded-none,
+) !default;
+
+/* ---------------------------------------------------------- 
+     Buttons
+  ---------------------------------------------------------- */
+
+$btn-height-xs: 18px !default;
+$btn-height-sm: 28px !default;
+$btn-height-md: 40px !default;
+$btn-height-lg: 48px !default;
+
+$btn-font-xs: 1.1rem !default;
+$btn-font-sm: 1.2rem !default;
+$btn-font-md: 1.4rem !default;
+$btn-font-lg: 1.6rem !default;
+
+$btn-size-xs: 0.2rem 0.4rem !default;
+$btn-size-sm: 0.4rem 0.8rem !default;
+$btn-size-md: 0.8rem 1.6rem !default;
+$btn-size-lg: 1.2rem 2rem !default;
+
+$btn-sizes: (
+  'xs': (
+    $btn-height-xs,
+    $btn-size-xs,
+    $btn-font-xs,
+  ),
+  'sm': (
+    $btn-height-sm,
+    $btn-size-sm,
+    $btn-font-sm,
+  ),
+  'md': (
+    $btn-height-md,
+    $btn-size-md,
+    $btn-font-md,
+  ),
+  'lg': (
+    $btn-height-lg,
+    $btn-size-lg,
+    $btn-font-lg,
+  ),
+);
+
+/* ---------------------------------------------------------- 
+     Spacing
+  ---------------------------------------------------------- */
+$spacing: 0.4rem !default;
+$space-count: 30 !default;

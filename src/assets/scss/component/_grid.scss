@@ -1,16 +1,88 @@
-@use 'sass:math';
+// .$column-calculation: 
+// (100% - ($gutter-width-procent * ($column-count - 1))) / $column-count; 
 
-// grid
-@for $i from 1 through $col-count {
-  .col-#{$i} {
-    flex-basis: calc(100 / ($col-count / $i)) * 1%;
-    padding: 0 $gutter-size;
-  }
+// @for $i from 1 through $col-count {
+//   .col-#{$i} {
+//     flex-basis: calc(100 / ($col-count / $i)) * 1%;
+//     padding: 0 $gutter-size;
+//   }
+// }
+
+// .row {
+//   box-sizing: border-box;
+//   display: flex;
+//   margin-left: -$gutter-size;
+//   margin-right: -$gutter-size;
+// }
+
+
+@mixin make-row($gutter: $grid-gutter) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -$gutter * .5;
+  margin-left: -$gutter * .5;
+}
+@mixin make-col-auto() {
+  flex: 0 0 auto;
+  width: auto;
 }
 
 .row {
-  box-sizing: border-box;
-  display: flex;
-  margin-left: -$gutter-size;
-  margin-right: -$gutter-size;
+  @include make-row();
+  
+  > * {
+    flex-shrink: 0;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding-right: $grid-gutter * .5;
+    padding-left: $grid-gutter * .5;
+  }
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+  > * {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+[class^='col'] {
+  display: block;
+  flex: 1 0 0%;
+}
+
+@mixin grid-columns($bp: null) {
+  $infix: if($bp == null, '', '-#{$bp}');
+
+  @for $i from 1 through $grid-count {
+    .col#{$infix}-#{$i} {
+      flex: 0 0 auto;
+      flex-basis: calc(100 / ($grid-count / $i) * 1%);
+    }
+    .offset#{$infix}-#{$i} {
+      margin-left: calc(100 / ($grid-count / $i) * 1%);
+    }
+  }
+  .col#{$infix}-auto {
+    @include make-col-auto();
+    
+  }
+
+  .offset#{$infix}-0 {
+    margin-left: 0;
+  }
+  // hidden-[*]
+  .hidden#{$infix} {
+    display: none !important;
+  }
+}
+@include grid-columns;
+
+@each $bp, $w in $grid-breakpoints {
+  @media screen and (min-width: $w) {
+    @include grid-columns($bp);
+  }
 }

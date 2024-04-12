@@ -1,9 +1,13 @@
 // Theme Mixins
 
+@import 'component/reset';
 @import 'component/colors';
 @import 'component/typography';
-@import 'component/breakpoints';
+@import 'component/display';
 @import 'component/container';
 @import 'component/grid';
 @import 'component/spacing';
+@import 'component/sizes';
+@import 'component/borders';
 @import 'component/buttons';
+@import 'component/animations';

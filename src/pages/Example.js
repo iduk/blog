@@ -6,8 +6,8 @@ import Dialog from '../components/Dialogs/Dialog'
 import styled from 'styled-components'
 
 const Document = styled.section`
-  margin: 3rem 0;
-  border: 1px solid var(--primary);
+  margin: 2rem 0;
+  border: 1px solid var(--shade-6);
 `
 
 function Example() {
@@ -34,7 +34,7 @@ function Example() {
       <Document>
         <h5>Dialog</h5>
         <div className="py-4 text-center">
-          <button className="btn btn-primary p-3" onClick={toggleButton}>
+          <button className="btn btn-md btn-primary" onClick={toggleButton}>
             Dialog
           </button>
 
@@ -45,7 +45,7 @@ function Example() {
             width="300px"
           >
             <h5>안녕하세요 모달입니다</h5>
-            <button className="btn p-2" onClick={() => toggleDialog(false)}>
+            <button className="btn btn-md btn-primary p-2" onClick={() => toggleDialog(false)}>
               [Close]
             </button>
           </Dialog>
@@ -56,14 +56,16 @@ function Example() {
         <h5>12 Grid Columns</h5>
         <p>.row, .col-{'{number}'}</p>
 
-        <div className="row my-3">
-          <div className="col-6 border">
-            <div className="column-size bg-gray">element</div>
+        <section className='container'>
+          <div className="row my-8">
+            <div className="col-6 border">
+              <div className="column-size bg-gray">element</div>
+            </div>
+            <div className="col-6 border">
+              <div className="column-size bg-gray">element</div>
+            </div>
           </div>
-          <div className="col-6 border">
-            <div className="column-size bg-gray">element</div>
-          </div>
-        </div>
+        </section>
         <div className="row">
           <div className="col-3 border">
             <div className="column-size bg-gray">element</div>
@@ -133,6 +135,16 @@ function Example() {
           <span className="box bg-primary-700" />
           <span className="box bg-primary-800" />
           <span className="box bg-primary-900" />
+        </div>
+      </Document>
+
+      <Document>
+        <h5>Buttons</h5>
+        <p>.btn-{'{theme}'}</p>
+        <div className="mt-3 flex gap-4">
+          <button className="btn btn-sm btn-primary">Button sm</button>
+          <button className="btn btn-md btn-primary">Button md</button>
+          <button className="btn btn-lg btn-primary">Button lg</button>
         </div>
       </Document>
 

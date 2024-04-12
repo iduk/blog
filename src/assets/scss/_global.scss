@@ -43,11 +43,18 @@ i.bx {
   align-items: center;
 }
 
+html {
+  font-size: 62.5%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
 body {
   margin: 0;
   padding: 0;
+  line-height: normal;
+  font-size: $text-base;
   font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont,
-    system-ui, Roboto, 'Helvetica Neue', 'Segoe UI';
+  system-ui, Roboto, 'Helvetica Neue', 'Segoe UI';
 }
 
 button,

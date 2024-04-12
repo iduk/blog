@@ -1,38 +1,55 @@
 // Buttons
-%btn {
-  display: inline-block;
-  border-style: solid;
+%button-base {
   appearance: none;
-  box-shadow: none;
   box-sizing: border-box;
-  line-height: normal;
+  box-shadow: none;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  border-width: 0;
   border-color: transparent;
-  border-width: $btn-border-width;
-  font-size: $text-base;
-  transition: background 0.2s ease;
+  border-style: solid;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
-// bg,border,invert-color & hover,focus
-@mixin button-theme($color-palette) {
-  @each $name, $color in $color-palette {
-    &-#{'' + $name} {
-      background-color: #{$color};
-      border-color: #{$color};
-      @include color-invert($color);
+@mixin btn-color($color, $name) {
+  $color-variable: map-get($color-palette, $name);
+  background-color: $color-variable;
+  border: $border-width solid $color-variable;
+  color: if(lightness($color-variable) > 50, $dark, $light);
 
-      &:hover,
-      &:focus {
-        background-color: lighten($color, 3%);
-      }
-      &:active {
-        background-color: darken($color, 3%);
-      }
-    }
+  &:hover,
+  &:focus {
+    background-color: adjust-color($color-variable, $lightness: 10%);
   }
+  &:active {
+    background-color: adjust-color($color-variable, $lightness: -10%);
+  }
+}
+@mixin btn-size($height, $padding, $font-size) {
+  height: $height !important;
+  padding: $padding;
+  font-size: $font-size;
 }
 
 .btn {
-  @extend %btn;
-  @include button-theme($color-palette);
+  @extend %button-base;
+
+  @each $color-name, $color-value in $color-palette {
+    &-#{$color-name} {
+      @include btn-color($color-value, $color-name);
+    }
+  }
+
+  @each $size, $values in $btn-sizes {
+    &-#{$size} {
+      @include btn-size(nth($values, 1), nth($values, 2), nth($values, 3));
+    }
+  }
 }

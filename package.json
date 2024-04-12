@@ -27,7 +27,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-html": "^6.2.0",
     "eslint-plugin-react": "^7.28.0",
-    "fibers": "^5.0.0",
     "file-loader": "^6.2.0",
     "gh-pages": "^3.2.3",
     "html-loader": "^3.0.1",

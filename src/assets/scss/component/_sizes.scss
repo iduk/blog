@@ -1,0 +1,31 @@
+// w-*, h-*
+$size: 10;
+$sizes: (
+  w: 'width',
+  h: 'height',
+) !default;
+
+@mixin sizing($bp: null) {
+  $infix: if($bp == null, '', '-#{$bp}');
+
+  @for $i from 0 through 10 {
+    @each $name, $property in $sizes {
+      .#{$name}#{$infix}-#{$i * $size} {
+        #{$property}: $i * $size + 0% !important;
+      }
+    }
+  }
+}
+
+@each $bp, $w in $grid-breakpoints {
+  @if $bp {
+    @if $bp == 'xs' {
+      @include sizing;
+    }
+    @media screen and (min-width: $w) {
+      @include sizing($bp);
+    }
+  } @else {
+    @include sizing;
+  }
+}
